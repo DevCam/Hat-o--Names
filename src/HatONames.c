@@ -36,7 +36,8 @@ int HON_InitializeHat(HON_hat* hat, char* dataPath)
 
 HON_name HON_PullName(HON_hat hat)
 {
-  // Get random name
+  int r = rand() % hat.name_count;
+  return hat.Names[r];
 }
 
 // Initialize library struct

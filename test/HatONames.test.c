@@ -21,7 +21,10 @@ void HON_CanPullNames(void)
   HON_hat hat;
   HatONames.InitializeHat(&hat, "./test/testData");
   HON_name name = HatONames.PullName(hat);
-  TEST_ASSERT_EQUAL_INT(2, 2);
+
+  TEST_ASSERT_NOT_EMPTY(name.full_name);
+  TEST_ASSERT_NOT_EMPTY(name.nickname);
+  TEST_PASS_MESSAGE(name.nickname);
 }
 
 int main(void)
