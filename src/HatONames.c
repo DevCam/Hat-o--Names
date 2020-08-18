@@ -37,12 +37,37 @@ int HON_InitializeHat(HON_hat* hat, char* dataPath)
 HON_name HON_PullName(HON_hat hat)
 {
   int r = rand() % hat.name_count;
-  return hat.Names[r];
+
+  for(int i = r; i < hat.name_count + r; i++)
+    if(hat.Names[i % hat.name_count].full_name[0] != '\0')
+      return hat.Names[r];
+
+  HON_name anon = {
+    .full_name = '\0',
+    .nickname = '\0'
+  };
+
+  return anon;
 }
+
+int HON_RemoveName(HON_hat* hat, HON_name toRemove)
+{
+  for(int i=0; i < hat->name_count; i++)
+  {
+    if(!strcmp(hat->Names[i].full_name, toRemove.full_name))
+    {
+      hat->Names[i].full_name[0] = '\0';
+      hat->Names[i].nickname[0] = '\0';
+      return 1;
+    }
+  }
+  return 0;
+}
+
 
 // Initialize library struct
 const struct hatONames HatONames = {
   .InitializeHat = HON_InitializeHat,
-  .RemoveName = NotImplementedErr,
+  .RemoveName = HON_RemoveName,
   .PullName = HON_PullName
 };
