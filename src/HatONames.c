@@ -40,7 +40,7 @@ HON_name HON_PullName(HON_hat hat)
 
   for(int i = r; i < hat.name_count + r; i++)
     if(hat.Names[i % hat.name_count].full_name[0] != '\0')
-      return hat.Names[r];
+      return hat.Names[i % hat.name_count];
 
   HON_name anon = {
     .full_name = '\0',
