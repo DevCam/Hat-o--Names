@@ -17,7 +17,7 @@ typedef struct HON_hat {
 
 struct hatONames {
   int (*InitializeHat)(HON_hat*, char*);
-  int (*RemoveName)(HON_hat*);
+  int (*RemoveName)(HON_hat*, HON_name);
   HON_name (*PullName)(HON_hat);
 };
 
