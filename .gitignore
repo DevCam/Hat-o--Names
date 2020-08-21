@@ -53,7 +53,9 @@ dkms.conf
 
 # OS x
 .DS_Store
+
+# Dir
 data/
-include/*
+include/
 app
 tests
